@@ -33,6 +33,13 @@ header {
     display: flex;
 }
 
+.headline-header {
+  color: var(--primary-color);
+  text-transform: uppercase;
+  padding-left: 20px;
+  font-size: 32px;
+}
+
 .top-logo {
   display: flex;
   align-items: center;
