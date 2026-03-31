@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../assets/fonts/OpenSans-VariableFont_wdth\,wght.ttf') format('truetype');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans:ital';
+  src: url('../assets/fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --primary-bg-color: #09212A;
+  --second-bg-color: #06171E;
+  --primary-color: #ffffff;
+  --spacing-inner: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+}
