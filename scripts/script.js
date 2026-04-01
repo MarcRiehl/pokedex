@@ -52,7 +52,7 @@ async function fetchDetailDataJson() {
 function renderThumb() {
     let resultRef = document.getElementById("content");
     for (let i = 0; i < dataArrayPokemon.length; i++) {
-        console.log(dataArrayPokemon[i].types);
+        // console.log(dataArrayPokemon[i].types);
         resultRef.innerHTML += getHTMLForThumbs(i);
     }
 
@@ -70,4 +70,17 @@ switch (types){
 function getError() {
     let resultRef = document.getElementById("content");
     resultRef.innerHTML = "Fehler";
+}
+
+function getColor(type){
+    switch (type) {
+        case "grass":
+            return "green";
+        case "fire":
+            return "red";
+        case "water":
+            return "blue";
+        default:
+            return "gray";
+    }
 }
