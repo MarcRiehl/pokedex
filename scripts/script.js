@@ -12,8 +12,6 @@ const dataArrayPokemon = [];
 let currentIndex = 0;
 
 function ini() {
-
-    fetchDataJson();
     fetchDetailDataJson();
 }
 
@@ -30,9 +28,10 @@ async function fetchDataJson() {
 
 async function fetchDetailDataJson() {
     try {
-        let getFetchData = await fetchDataJson();
+        let getFetchData = await fetchDataJson();       
         for (let index = 0; index < getFetchData.results.length; index++) {
-            let newDetailFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${index + 1}/`);
+            let id = index + 1;
+            let newDetailFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
             let responseDetailAsJson = await newDetailFetch.json();
             dataArrayPokemon.push(responseDetailAsJson);
             // dataArrayPokemon.push(
@@ -53,10 +52,19 @@ async function fetchDetailDataJson() {
 function renderThumb() {
     let resultRef = document.getElementById("content");
     for (let i = 0; i < dataArrayPokemon.length; i++) {
-        console.log(dataArrayPokemon[i].name);
+        console.log(dataArrayPokemon[i].types);
         resultRef.innerHTML += getHTMLForThumbs(i);
     }
 
+}
+
+function getColorOfType(types){
+switch (types){
+    case "grass":
+        return "#12541";
+    default:
+        return "#12541";   
+}
 }
 
 function getError() {
