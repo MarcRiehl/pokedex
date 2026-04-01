@@ -17,7 +17,7 @@ function ini() {
 
 async function fetchDataJson() {
     try {
-        let response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
+        let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${currentIndex}`);
         let responseAsJson = await response.json();
         return responseAsJson;
     } catch (error) {
@@ -34,6 +34,7 @@ async function fetchDetailDataJson() {
             let newDetailFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
             let responseDetailAsJson = await newDetailFetch.json();
             dataArrayPokemon.push(responseDetailAsJson);
+           
             // dataArrayPokemon.push(
             //     {
             //         name: getFetchData.results[index].name,
@@ -49,22 +50,22 @@ async function fetchDetailDataJson() {
 
 }
 
+function morePokemonData() {
+    let resultRef = document.getElementById("content");
+    resultRef.innerHTML = "";
+    fetchDetailDataJson();
+
+}
+
 function renderThumb() {
     let resultRef = document.getElementById("content");
     for (let i = 0; i < dataArrayPokemon.length; i++) {
+        let colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern
         // console.log(dataArrayPokemon[i].types);
-        resultRef.innerHTML += getHTMLForThumbs(i);
+        resultRef.innerHTML += getHTMLForThumbs(i, colorType);
+        currentIndex = i + 1;
     }
-
-}
-
-function getColorOfType(types){
-switch (types){
-    case "grass":
-        return "#12541";
-    default:
-        return "#12541";   
-}
+    
 }
 
 function getError() {
@@ -72,15 +73,45 @@ function getError() {
     resultRef.innerHTML = "Fehler";
 }
 
-function getColor(type){
+function getColorOfType(type) {
     switch (type) {
-        case "grass":
-            return "green";
+        case "normal":
+            return "#A8A77A";
         case "fire":
-            return "red";
+            return "#EE8130";
         case "water":
-            return "blue";
+            return "#6390F0";
+        case "electric":
+            return "#F7D02C";
+        case "grass":
+            return "#7AC74C";
+        case "ice":
+            return "#96D9D6";
+        case "fighting":
+            return "#C22E28";
+        case "poison":
+            return "#A33EA1";
+        case "ground":
+            return "#E2BF65";
+        case "flying":
+            return "#A98FF3";
+        case "psychic":
+            return "#F95587";
+        case "bug":
+            return "#A6B91A";
+        case "rock":
+            return "#B6A136";
+        case "ghost":
+            return "#735797";
+        case "dragon":
+            return "#6F35FC";
+        case "dark":
+            return "#705746";
+        case "steel":
+            return "#B7B7CE";
+        case "fairy":
+            return "#D685AD";
         default:
-            return "gray";
+            return "#A8A77A";
     }
 }
