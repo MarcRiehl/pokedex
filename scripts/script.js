@@ -12,8 +12,9 @@ const dataArrayPokemon = [];
 let currentIndex = 0;
 
 function ini() {
-    getListOfPokemons();
-    
+
+    fetchDataJson();
+    fetchDetailDataJson();
 }
 
 async function fetchDataJson() {
@@ -27,23 +28,33 @@ async function fetchDataJson() {
 
 }
 
-async function getListOfPokemons() {
-    let getFetchData = await fetchDataJson();
-    for (let index = 0; index < getFetchData.results.length; index++) {
-        dataArrayPokemon.push(
-            {
-            name: getFetchData.results[index].name,
-            url: getFetchData.results[index].url
-            }
-        )  
+async function fetchDetailDataJson() {
+    try {
+        let getFetchData = await fetchDataJson();
+        for (let index = 0; index < getFetchData.results.length; index++) {
+            let newDetailFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${index + 1}/`);
+            let responseDetailAsJson = await newDetailFetch.json();
+            dataArrayPokemon.push(responseDetailAsJson);
+            // dataArrayPokemon.push(
+            //     {
+            //         name: getFetchData.results[index].name,
+            //         url: getFetchData.results[index].url
+            //     }
+            // )
+        }
+        renderThumb();
+        // return dataArrayPokemon;
+    } catch (error) {
+        getError();
     }
-     renderThumb();
+
 }
 
-function renderThumb(){
+function renderThumb() {
     let resultRef = document.getElementById("content");
     for (let i = 0; i < dataArrayPokemon.length; i++) {
-       resultRef.innerHTML += getHTMLForThumbs(i);
+        console.log(dataArrayPokemon[i].name);
+        resultRef.innerHTML += getHTMLForThumbs(i);
     }
 
 }
@@ -52,5 +63,3 @@ function getError() {
     let resultRef = document.getElementById("content");
     resultRef.innerHTML = "Fehler";
 }
-
-
