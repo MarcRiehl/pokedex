@@ -28,12 +28,12 @@ async function fetchDataJson() {
 
 async function fetchDetailDataJson() {
     try {
+        let startIndex = currentIndex;
         let getFetchData = await fetchDataJson();
         let getFetchDataNew = getFetchData.results.length + currentIndex;
         for (let index = currentIndex; index < getFetchDataNew; index++) {
-            let id = currentIndex + 1;
-            currentIndex = currentIndex + 1;
-            let newDetailFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+            currentIndex++;
+            let newDetailFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${currentIndex}/`);
             let responseDetailAsJson = await newDetailFetch.json();
             dataArrayPokemon.push(responseDetailAsJson);
             // dataArrayPokemon.push(
@@ -43,7 +43,11 @@ async function fetchDetailDataJson() {
             //     }
             // )
         }
-        renderThumb();
+        if (currentIndex == 20) {
+            renderThumb();
+        } else {
+            renderMoreThumb(startIndex);
+        }
         // return dataArrayPokemon;
     } catch (error) {
         getError();
@@ -58,12 +62,20 @@ function morePokemonData() {
 
 function renderThumb() {
     let resultRef = document.getElementById("content");
+    // resultRef.innerHTML = "";
     for (let i = 0; i < dataArrayPokemon.length; i++) {
         let colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern
         // console.log(dataArrayPokemon[i].types);
-        resultRef.innerHTML += getHTMLForThumbs(i, colorType);      
+        resultRef.innerHTML += getHTMLForThumbs(i, colorType);
     }
-    
+}
+
+function renderMoreThumb(startIndex) {
+    let resultRef = document.getElementById("content");
+    for (let i = startIndex; i < dataArrayPokemon.length; i++) {
+        let colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern;
+        resultRef.innerHTML += getHTMLForThumbs(i, colorType);
+    }
 }
 
 function getError() {
