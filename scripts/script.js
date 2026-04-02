@@ -28,13 +28,14 @@ async function fetchDataJson() {
 
 async function fetchDetailDataJson() {
     try {
-        let getFetchData = await fetchDataJson();       
-        for (let index = 0; index < getFetchData.results.length; index++) {
-            let id = index + 1;
+        let getFetchData = await fetchDataJson();
+        let getFetchDataNew = getFetchData.results.length + currentIndex;
+        for (let index = currentIndex; index < getFetchDataNew; index++) {
+            let id = currentIndex + 1;
+            currentIndex = currentIndex + 1;
             let newDetailFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
             let responseDetailAsJson = await newDetailFetch.json();
             dataArrayPokemon.push(responseDetailAsJson);
-           
             // dataArrayPokemon.push(
             //     {
             //         name: getFetchData.results[index].name,
@@ -51,8 +52,6 @@ async function fetchDetailDataJson() {
 }
 
 function morePokemonData() {
-    let resultRef = document.getElementById("content");
-    resultRef.innerHTML = "";
     fetchDetailDataJson();
 
 }
@@ -62,8 +61,7 @@ function renderThumb() {
     for (let i = 0; i < dataArrayPokemon.length; i++) {
         let colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern
         // console.log(dataArrayPokemon[i].types);
-        resultRef.innerHTML += getHTMLForThumbs(i, colorType);
-        currentIndex = i + 1;
+        resultRef.innerHTML += getHTMLForThumbs(i, colorType);      
     }
     
 }
