@@ -1,15 +1,15 @@
 @font-face {
   font-family: 'Open Sans';
-  src: url('../assets/fonts/OpenSans-VariableFont_wdth\,wght.ttf') format('truetype');
+  src: url('../assets/fonts/OpenSans-VariableFont_wdth/wght.ttf') format('truetype');
   font-weight: 100 800;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Open Sans:ital';
-  src: url('../assets/fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf') format('truetype');
-  font-weight: 300 900;
+  font-family: 'Open Sans:italic';
+  src: url('../assets/fonts/OpenSans-Italic-VariableFont_wdth/wght.ttf') format('truetype');
+  font-weight: 100 800;
   font-style: italic;
   font-display: swap;
 }
@@ -43,8 +43,8 @@ button {
 .test-button{
   width: 80px;
   height:80px;
-  position: sticky;
-  top: 0px;
+  position: fixed;
+  bottom: 20px;
   background-color: aqua;
   cursor: pointer;
 }

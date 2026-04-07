@@ -2,6 +2,9 @@
     display: flex;
     justify-content: center;
     background-color: var(--primary-bg-color);
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .wrapper-content {
@@ -102,6 +105,7 @@ footer {
   height: auto;
   width: 360px;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .h2-card-title {

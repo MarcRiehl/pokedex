@@ -1,15 +1,11 @@
-// function alle Pokemon auslesen immer += 20
-// function in array push ausgelesene Pokemonts
-// function array push detail ausgelesene Pokemonts??
-// function list pokemon = 20 
 // function onclick detail pokemon in Dialog
 // function next previous Pokemon
 // function filter per name min. 3 char
-// function load more
 // function spinner beim laden von +20 Pokemons
 
 const dataArrayPokemon = [];
 let currentIndex = 0;
+let dialogOpen = document.getElementById('dialog-frame');
 
 function ini() {
     fetchDetailDataJson();
@@ -62,7 +58,6 @@ function morePokemonData() {
 
 function renderThumb() {
     let resultRef = document.getElementById("content");
-    // resultRef.innerHTML = "";
     for (let i = 0; i < dataArrayPokemon.length; i++) {
         let colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern
         // console.log(dataArrayPokemon[i].types);
@@ -81,6 +76,52 @@ function renderMoreThumb(startIndex) {
 function getError() {
     let resultRef = document.getElementById("content");
     resultRef.innerHTML = "Fehler";
+}
+
+function openPicture(index) {
+    // currentIndex = index; //neu deklarieren für nextPicture()
+    dialogOpen.showModal();
+    dialogOpen.classList.add('opened');
+    srcInnerDialog(index);
+}
+
+function dialogClose() {
+    dialogOpen.close();
+    dialogOpen.classList.remove('opened');
+}
+
+function srcInnerDialog(index) {
+    // dialogPicture.src = `${BASE_URL}${ALL_IMG[currentIndex]}`;
+    // let removeStr = ALL_IMG[currentIndex];
+    // let removeStrNew = removeStr.substring(0, removeStr.lastIndexOf('.')).replace(/-/i, " ").replace(/-/g, " - ");
+    // dialogTitel.innerHTML = removeStrNew;
+     let resultRef = document.getElementById("dialog-frame");
+     resultRef.innerHTML = getHtmlForDetail(index);
+    let currentPicture = currentIndex + 1;
+    if (currentPicture <= 9) {
+        currentPicture = `0${Number(currentIndex + 1)}`;
+    }
+    else {
+        currentPicture = `${Number(currentIndex + 1)}`;
+    }
+}
+
+function nextPicture() {
+    if (currentIndex === dataArrayPokemon.length - 1) {
+        currentIndex = 0;
+    } else {
+        currentIndex++;
+    }
+    srcInnerDialog();
+}
+
+function prevPicture() {
+    if (currentIndex === 0) {
+        currentIndex = dataArrayPokemon.length - 1;
+    } else {
+        currentIndex--;
+    }
+    srcInnerDialog();
 }
 
 function getColorOfType(type) {
