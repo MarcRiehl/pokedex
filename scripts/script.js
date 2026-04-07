@@ -5,6 +5,7 @@
 
 const dataArrayPokemon = [];
 let currentIndex = 0;
+let currentArrayIndex = currentIndex;
 let dialogOpen = document.getElementById('dialog-frame');
 
 function ini() {
@@ -79,10 +80,10 @@ function getError() {
 }
 
 function openPicture(index) {
-    // currentIndex = index; //neu deklarieren für nextPicture()
+    currentArrayIndex = index; //neu deklarieren für nextPicture()
     dialogOpen.showModal();
     dialogOpen.classList.add('opened');
-    srcInnerDialog(index);
+    srcInnerDialog(currentArrayIndex);
 }
 
 function dialogClose() {
@@ -91,37 +92,30 @@ function dialogClose() {
 }
 
 function srcInnerDialog(index) {
-    // dialogPicture.src = `${BASE_URL}${ALL_IMG[currentIndex]}`;
-    // let removeStr = ALL_IMG[currentIndex];
-    // let removeStrNew = removeStr.substring(0, removeStr.lastIndexOf('.')).replace(/-/i, " ").replace(/-/g, " - ");
-    // dialogTitel.innerHTML = removeStrNew;
      let resultRef = document.getElementById("dialog-frame");
      resultRef.innerHTML = getHtmlForDetail(index);
-    let currentPicture = currentIndex + 1;
-    if (currentPicture <= 9) {
-        currentPicture = `0${Number(currentIndex + 1)}`;
-    }
-    else {
-        currentPicture = `${Number(currentIndex + 1)}`;
-    }
 }
 
 function nextPicture() {
-    if (currentIndex === dataArrayPokemon.length - 1) {
-        currentIndex = 0;
+    if (currentArrayIndex === dataArrayPokemon.length - 1) {
+        currentArrayIndex = 0;
     } else {
-        currentIndex++;
+        currentArrayIndex ++;
     }
-    srcInnerDialog();
+    srcInnerDialog(currentArrayIndex);
 }
 
 function prevPicture() {
-    if (currentIndex === 0) {
-        currentIndex = dataArrayPokemon.length - 1;
+    if (currentArrayIndex  === 0) {
+        currentArrayIndex  = dataArrayPokemon.length - 1;
     } else {
-        currentIndex--;
+        currentArrayIndex --;
     }
-    srcInnerDialog();
+    srcInnerDialog(currentArrayIndex);
+}
+
+function searchPokemon(){
+
 }
 
 function getColorOfType(type) {

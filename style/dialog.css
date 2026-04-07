@@ -61,3 +61,53 @@ dialog.opened::backdrop {
   font-size: 18px;
   text-transform: uppercase;
 }
+button .close-button {
+  display: block;
+  background-image: url("../assets/img/icon-dialog-close.png");
+  background-size: cover;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-image: url("../assets/img/icon-dialog-close-hover.png");
+}
+
+.close-button:active {
+  background-image: url("../assets/img/icon-dialog-close-pressing.png");
+}
+
+#dialog-picture-control {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 20px;
+}
+
+.previous-picture {
+  background-image: url("../assets/img/arrow-next-picture.png");
+  transform: scaleX(-1);
+  background-size: cover;
+  display: block;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.previous-picture:hover {
+  background-image: url("../assets/img/arrow-next-picture-hover.png");
+}
+
+.next-picture {
+  background-image: url("../assets/img/arrow-next-picture.png");
+  background-size: cover;
+  display: block;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.next-picture:hover {
+  background-image: url("../assets/img/arrow-next-picture-hover.png");
+}

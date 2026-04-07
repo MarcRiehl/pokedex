@@ -24,10 +24,10 @@ function getHtmlForDetail(i) {
                         <div id="dialog-content">
                             <img id="dialog-picture" src="">
                             <div id="dialog-picture-control">
-                                <button id="previous-picture" onclick="prevPicture()"><span
+                                <button id="previous-picture" onclick="prevPicture(${i})"><span
                                         class="previous-picture"></span></button>
                                 <div id="dialog-picture-number"></div>
-                                <button id="next-picture" onclick="nextPicture()"><span
+                                <button id="next-picture" onclick="nextPicture(${i})"><span
                                         class="next-picture"></span></button>
                             </div>
                         </div>

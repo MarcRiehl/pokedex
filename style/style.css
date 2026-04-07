@@ -43,6 +43,14 @@ header {
   font-size: 32px;
 }
 
+.top-menu {
+  height: 128px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
 .top-logo {
   display: flex;
   align-items: center;
@@ -53,6 +61,16 @@ header {
   width: auto;
   height: 100px;
 
+}
+
+.top-menu-right {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+#search-pokemon {
+padding: 7px;
 }
 
 main {
