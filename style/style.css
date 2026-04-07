@@ -1,39 +1,39 @@
 .wrapper-header {
-    display: flex;
-    justify-content: center;
-    background-color: var(--primary-bg-color);
-    position: sticky;
-    top: 0;
-    z-index: 999;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-bg-color);
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .wrapper-content {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .wrapper-inner {
-    max-width: 1440px;
-    width: 100%;
-    min-height: calc(100dvh - 208px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  max-width: 1440px;
+  width: 100%;
+  min-height: calc(100dvh - 208px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .wrapper-footer {
-    display: flex;
-    justify-content: center;
-    background-color: var(--second-bg-color);
-    background: var(--second-bg-color) url("../assets/img/back-footer.svg") center center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  background-color: var(--second-bg-color);
+  background: var(--second-bg-color) url("../assets/img/back-footer.svg") center center/cover no-repeat;
 
 }
 
 header {
-    max-width: 1440px;
-    width: 100%;
-    height: 120px;
-    display: flex;
+  max-width: 1440px;
+  width: 100%;
+  height: 120px;
+  display: flex;
 }
 
 .headline-header {
@@ -70,7 +70,21 @@ header {
 }
 
 #search-pokemon {
-padding: 7px;
+  padding: 7px;
+}
+
+button {
+  background-color: #929292;
+  padding: 10px 10px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: auto;
+}
+
+button:hover {
+  filter: brightness(120%);
 }
 
 main {
@@ -118,6 +132,7 @@ footer {
   flex-wrap: wrap;
   gap: 50px 20px;
 }
+
 .card {
   background-color: #0f3342;
   height: auto;
@@ -133,6 +148,7 @@ footer {
   text-transform: uppercase;
   text-align: center;
 }
+
 .list-thumb-img {
   height: 160px;
   border-top: 2px solid #4683a1;
@@ -142,6 +158,7 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
 .current-thumb-img {
   height: 120px;
   width: auto;

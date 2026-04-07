@@ -13,6 +13,21 @@ function getHTMLForThumbs(i, colorType) {
     `;
 }
 
+function getHTMLForSearchThumbs(i, colorType) {
+    return `
+
+    <div class="card" onclick="openPicture(${i})">
+    <div class="list-thumb" style="background:${colorType}">
+    <h2 class="h2-card-title">${dataSearchArrayPokemon[i].name} / id:${i + 1}</h2>
+            <div class="list-thumb-img">
+            <div>
+            <img class="current-thumb-img" src="${dataSearchArrayPokemon[i].sprites.other['official-artwork'].front_default}">
+            </div>
+    </div>
+    </div>
+    `;
+}
+
 function getHtmlForDetail(i) {
     return `
           <div class="dialog-frame-open">

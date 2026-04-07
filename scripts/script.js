@@ -1,15 +1,15 @@
-// function onclick detail pokemon in Dialog
-// function next previous Pokemon
 // function filter per name min. 3 char
 // function spinner beim laden von +20 Pokemons
 
 const dataArrayPokemon = [];
+let dataSearchArrayPokemon = [];
 let currentIndex = 0;
 let currentArrayIndex = currentIndex;
 let dialogOpen = document.getElementById('dialog-frame');
 
 function ini() {
     fetchDetailDataJson();
+    searchPokemon();
 }
 
 async function fetchDataJson() {
@@ -74,6 +74,16 @@ function renderMoreThumb(startIndex) {
     }
 }
 
+function renderSearchThumb() {
+    let resultRef = document.getElementById("content");
+    resultRef.innerHTML = "";
+    for (let i = 0; i < dataSearchArrayPokemon.length; i++) {
+        let colorType = getColorOfType(dataSearchArrayPokemon[i].types[0].type.name); //noch verbessern
+    //    console.log(dataSearchArrayPokemon[i].types);
+        resultRef.innerHTML += getHTMLForSearchThumbs(i, colorType);
+    }
+}
+
 function getError() {
     let resultRef = document.getElementById("content");
     resultRef.innerHTML = "Fehler";
@@ -106,8 +116,8 @@ function nextPicture() {
 }
 
 function prevPicture() {
-    if (currentArrayIndex  === 0) {
-        currentArrayIndex  = dataArrayPokemon.length - 1;
+    if (currentArrayIndex === 0) {
+        currentArrayIndex = dataArrayPokemon.length - 1;
     } else {
         currentArrayIndex --;
     }
@@ -115,8 +125,27 @@ function prevPicture() {
 }
 
 function searchPokemon(){
+    let resultInputField = document.getElementById("search-pokemon");
+    let inputField = resultInputField.value.toLowerCase().trim();
+  
 
+        if (inputField.length < 3) {
+        console.log("Mindestens 3 Buchstaben eingeben");
+        return;
+    }
+        let results = dataArrayPokemon.filter(elem =>
+        elem.name.toLowerCase().includes(inputField) //returns true if a string contains a specified string.
+    );
+
+    //  console.log(results);
+    if (results == 0){
+        console.log("Kein Type gefunden")
+    }else{
+        dataSearchArrayPokemon = results;
+        }
+        renderSearchThumb();
 }
+
 
 function getColorOfType(type) {
     switch (type) {
