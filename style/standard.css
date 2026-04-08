@@ -36,15 +36,35 @@ body {
   font-size: 18px;
 }
 
+
 button {
   background-color: transparent;
-  border: 0;
-}
-.test-button{
-  width: 80px;
-  height:80px;
-  position: fixed;
-  bottom: 20px;
-  background-color: aqua;
+  padding: 10px 10px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  width: auto;
+}
+
+button:hover {
+  filter: brightness(120%);
+}
+
+
+/* .load-more{
+display: flex;
+justify-content: center;
+align-items: center;
+} */
+
+.load-more-button{
+  height:auto;
+  background-color: var(--primary-bg-color);
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  border: 1px solid #4683a1;
+  margin-bottom: 20px;
+  padding: 12px;
 }

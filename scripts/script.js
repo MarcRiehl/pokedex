@@ -6,6 +6,7 @@ let dataSearchArrayPokemon = [];
 let currentIndex = 0;
 let currentArrayIndex = currentIndex;
 let dialogOpen = document.getElementById('dialog-frame');
+const overlay = document.getElementById('overlay');
 
 function ini() {
     fetchDetailDataJson();
@@ -19,7 +20,6 @@ async function fetchDataJson() {
     } catch (error) {
         getError();
     }
-
 }
 
 async function fetchDetailDataJson() {
@@ -42,7 +42,7 @@ async function fetchDetailDataJson() {
         if (currentIndex == 20) {
             renderThumb();
         } else {
-            renderMoreThumb(startIndex);
+            startLoadingScreen(startIndex);    
         }
         // return dataArrayPokemon;
     } catch (error) {
@@ -50,6 +50,23 @@ async function fetchDetailDataJson() {
     }
 
 }
+
+function startLoadingScreen(startIndex) {
+    overlay.classList.add("overlay");
+    overlay.classList.remove("hidden");
+    document.body.classList.add("no-scroll");
+    setTimeout(() => {
+        renderMoreThumb(startIndex);
+        endLoadingScreen();
+    }, 3000);
+}
+
+function endLoadingScreen() {
+    overlay.classList.remove("overlay");
+    overlay.classList.add("hidden");
+    document.body.classList.remove("no-scroll");
+}
+
 
 function morePokemonData() {
     fetchDetailDataJson();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +13,14 @@
     <script src="./scripts/template.js" defer></script>
 
 </head>
+
 <body onload="ini()">
     <section class="wrapper-header">
         <header class="top-menu">
             <div class="top-logo">
                 <a href="index.html">
                     <img class="top-logo-img" src="./assets/img/logo-pokedex.png" alt="Logo Pokedex" /></a>
-                    <div class="headline-header">Pokedex</div>
+                <div class="headline-header">Pokedex</div>
             </div>
             <div class="top-menu-right">
                 <input id="search-pokemon" type="text" placeholder="search Pokemon">
@@ -27,33 +29,33 @@
         </header>
     </section>
     <main>
-         
+        <div id="overlay" class="hidden"><img src="./assets/img/loading-pokeball.png" alt="Pokeball" /></div>
         <section class="wrapper-content">
             <section class="wrapper-inner">
                 <!-- #region Content -->
-                 <button class="test-button" onclick="morePokemonData()">Test</button>
-                     <dialog id="dialog-frame" aria-labelledby="dialog-title" closedby="any">
+                <dialog id="dialog-frame" aria-labelledby="dialog-title" closedby="any">
                 </dialog>
-              <section id="content">
+                <section id="content">
+                </section>
+               <div class="load-more">
+                <button class="load-more-button" onclick="morePokemonData()">Load more...</button>
               </div>
-
-               
                 <!-- #endregion -->
             </section>
+   
         </section>
     </main>
     <section class="wrapper-footer">
         <footer>
             <div class="footer-flex">
                 <div class="logo-footer">
-                    <img class="logo-footer-img" src="./assets/img/logo-dev-aka.png"
-                        alt="Logo Developer Akademie" />
+                    <img class="logo-footer-img" src="./assets/img/logo-dev-aka.png" alt="Logo Developer Akademie" />
                     <div class="copyright">&#169;&nbsp<span id="year"></span>. Alle Rechte vorbehalten.</div>
                 </div>
             </div>
         </footer>
     </section>
-    
+
 </body>
 
 </html>
