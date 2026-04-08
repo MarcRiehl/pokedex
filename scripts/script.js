@@ -9,7 +9,6 @@ let dialogOpen = document.getElementById('dialog-frame');
 
 function ini() {
     fetchDetailDataJson();
-    searchPokemon();
 }
 
 async function fetchDataJson() {
@@ -60,17 +59,30 @@ function morePokemonData() {
 function renderThumb() {
     let resultRef = document.getElementById("content");
     for (let i = 0; i < dataArrayPokemon.length; i++) {
-        let colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern
-        // console.log(dataArrayPokemon[i].types);
-        resultRef.innerHTML += getHTMLForThumbs(i, colorType);
+        let types = "";
+        let colorType = "";
+        for (let j = 0; j < dataArrayPokemon[i].types.length; j++) {
+            let typeName = dataArrayPokemon[i].types[j].type.name;
+            let color = getColorOfType(typeName);
+            colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern;
+            types += `<span style="color:${color}"> ${typeName}</span>`;
+        }
+        resultRef.innerHTML += getHTMLForThumbs(i, colorType, types);
     }
 }
 
 function renderMoreThumb(startIndex) {
     let resultRef = document.getElementById("content");
     for (let i = startIndex; i < dataArrayPokemon.length; i++) {
-        let colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern;
-        resultRef.innerHTML += getHTMLForThumbs(i, colorType);
+        let types = "";
+        let colorType = "";
+        for (let j = 0; j < dataArrayPokemon[i].types.length; j++) {
+            let typeName = dataArrayPokemon[i].types[j].type.name;
+            let color = getColorOfType(typeName);
+            colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern;
+            types += `<span style="color:${color}"> ${typeName}</span>`;
+        }
+        resultRef.innerHTML += getHTMLForThumbs(i, colorType, types);
     }
 }
 
@@ -79,7 +91,6 @@ function renderSearchThumb() {
     resultRef.innerHTML = "";
     for (let i = 0; i < dataSearchArrayPokemon.length; i++) {
         let colorType = getColorOfType(dataSearchArrayPokemon[i].types[0].type.name); //noch verbessern
-    //    console.log(dataSearchArrayPokemon[i].types);
         resultRef.innerHTML += getHTMLForSearchThumbs(i, colorType);
     }
 }
@@ -102,15 +113,15 @@ function dialogClose() {
 }
 
 function srcInnerDialog(index) {
-     let resultRef = document.getElementById("dialog-frame");
-     resultRef.innerHTML = getHtmlForDetail(index);
+    let resultRef = document.getElementById("dialog-frame");
+    resultRef.innerHTML = getHtmlForDetail(index);
 }
 
 function nextPicture() {
     if (currentArrayIndex === dataArrayPokemon.length - 1) {
         currentArrayIndex = 0;
     } else {
-        currentArrayIndex ++;
+        currentArrayIndex++;
     }
     srcInnerDialog(currentArrayIndex);
 }
@@ -119,31 +130,29 @@ function prevPicture() {
     if (currentArrayIndex === 0) {
         currentArrayIndex = dataArrayPokemon.length - 1;
     } else {
-        currentArrayIndex --;
+        currentArrayIndex--;
     }
     srcInnerDialog(currentArrayIndex);
 }
 
-function searchPokemon(){
+function searchPokemon() {
     let resultInputField = document.getElementById("search-pokemon");
     let inputField = resultInputField.value.toLowerCase().trim();
-  
-
-        if (inputField.length < 3) {
+    if (inputField.length < 3) {
         console.log("Mindestens 3 Buchstaben eingeben");
         return;
     }
-        let results = dataArrayPokemon.filter(elem =>
+    let results = dataArrayPokemon.filter(elem =>
         elem.name.toLowerCase().includes(inputField) //returns true if a string contains a specified string.
     );
 
     //  console.log(results);
-    if (results == 0){
+    if (results == 0) {
         console.log("Kein Type gefunden")
-    }else{
+    } else {
         dataSearchArrayPokemon = results;
-        }
-        renderSearchThumb();
+    }
+    renderSearchThumb();
 }
 
 
