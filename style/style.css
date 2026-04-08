@@ -70,9 +70,7 @@ header {
   height: 60px;
 }
 
-#search-pokemon {
-  padding: 7px;
-}
+
 
 body.no-scroll {
   overflow: hidden;

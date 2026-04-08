@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/mobil.css">
     <link rel="stylesheet" href="./style/dialog.css">
+    <link rel="stylesheet" href="./style/all.min.css" />
     <script src="./scripts/script.js" defer></script>
     <script src="./scripts/template.js" defer></script>
 
@@ -24,7 +25,8 @@
             </div>
             <div class="top-menu-right">
                 <input id="search-pokemon" type="text" placeholder="search Pokemon">
-                <button class="save-button" onclick="searchPokemon()"></button>
+                <button class="search-button" onclick="searchPokemon()"><img class="magnifying-glas"
+                        src="./assets/img/magnifying-glass.png" alt="Magnifying Glas" /></a></button>
             </div>
         </header>
     </section>
@@ -37,12 +39,12 @@
                 </dialog>
                 <section id="content">
                 </section>
-               <div class="load-more">
-                <button class="load-more-button" onclick="morePokemonData()">Load more...</button>
-              </div>
+                <div id="load-more">
+                    <button class="load-more-button" onclick="morePokemonData()">Load more...</button>
+                </div>
                 <!-- #endregion -->
             </section>
-   
+
         </section>
     </main>
     <section class="wrapper-footer">

@@ -8,6 +8,7 @@ let currentArrayIndex = currentIndex;
 let dialogOpen = document.getElementById('dialog-frame');
 const overlay = document.getElementById('overlay');
 
+
 function ini() {
     fetchDetailDataJson();
 }
@@ -42,7 +43,7 @@ async function fetchDetailDataJson() {
         if (currentIndex == 20) {
             renderThumb();
         } else {
-            startLoadingScreen(startIndex);    
+            startLoadingScreen(startIndex);
         }
         // return dataArrayPokemon;
     } catch (error) {
@@ -117,11 +118,11 @@ function getError() {
     resultRef.innerHTML = "Fehler";
 }
 
-function openPicture(index) {
+function openPicture(index, colorType) {
     currentArrayIndex = index; //neu deklarieren für nextPicture()
     dialogOpen.showModal();
     dialogOpen.classList.add('opened');
-    srcInnerDialog(currentArrayIndex);
+    srcInnerDialog(currentArrayIndex, colorType);
 }
 
 function dialogClose() {
@@ -131,7 +132,15 @@ function dialogClose() {
 
 function srcInnerDialog(index) {
     let resultRef = document.getElementById("dialog-frame");
-    resultRef.innerHTML = getHtmlForDetail(index);
+        let types = "";
+        let colorType = "";
+        for (let j = 0; j < dataArrayPokemon[index].types.length; j++) {
+            let typeName = dataArrayPokemon[index].types[j].type.name;
+            let color = getColorOfType(typeName);
+            colorType = getColorOfType(dataArrayPokemon[index].types[0].type.name); //noch verbessern;
+            types += `<span style="color:${color}"> ${typeName}</span>`;
+        }
+    resultRef.innerHTML = getHtmlForDetail(index, types, colorType);
 }
 
 function nextPicture() {
@@ -153,14 +162,15 @@ function prevPicture() {
 }
 
 function searchPokemon() {
+    document.getElementById("load-more").classList.add("d-none");
     let resultInputField = document.getElementById("search-pokemon");
     let inputField = resultInputField.value.toLowerCase().trim();
     if (inputField.length < 3) {
         console.log("Mindestens 3 Buchstaben eingeben");
         return;
     }
-    let results = dataArrayPokemon.filter(elem =>
-        elem.name.toLowerCase().includes(inputField) //returns true if a string contains a specified string.
+    let results = dataArrayPokemon.filter(element =>
+        element.name.toLowerCase().includes(inputField) //returns true if a string contains a specified string.
     );
 
     //  console.log(results);
