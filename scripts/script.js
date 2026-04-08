@@ -5,6 +5,7 @@ const dataArrayPokemon = [];
 let dataSearchArrayPokemon = [];
 let currentIndex = 0;
 let currentArrayIndex = currentIndex;
+let currentSearchArrayIndex = 0;
 let dialogOpen = document.getElementById('dialog-frame');
 const overlay = document.getElementById('overlay');
 
@@ -107,9 +108,16 @@ function renderMoreThumb(startIndex) {
 function renderSearchThumb() {
     let resultRef = document.getElementById("content");
     resultRef.innerHTML = "";
-    for (let i = 0; i < dataSearchArrayPokemon.length; i++) {
-        let colorType = getColorOfType(dataSearchArrayPokemon[i].types[0].type.name); //noch verbessern
-        resultRef.innerHTML += getHTMLForSearchThumbs(i, colorType);
+      for (let i = 0; i < dataSearchArrayPokemon.length; i++) {
+        let types = "";
+        let colorType = "";
+        for (let j = 0; j < dataSearchArrayPokemon[i].types.length; j++) {
+            let typeName = dataSearchArrayPokemon[i].types[j].type.name;
+            let color = getColorOfType(typeName);
+            colorType = getColorOfType(dataSearchArrayPokemon[i].types[0].type.name); //noch verbessern;
+            types += `<span style="color:${color}"> ${typeName}</span>`;
+        }
+        resultRef.innerHTML += getHTMLForSearchThumbs(i, colorType, types);
     }
 }
 
@@ -124,6 +132,14 @@ function openPicture(index, colorType) {
     dialogOpen.classList.add('opened');
     srcInnerDialog(currentArrayIndex, colorType);
 }
+
+function openSearchPicture(index, colorType) {
+    currentSearchArrayIndex = index; //neu deklarieren für nextPicture()
+    dialogOpen.showModal();
+    dialogOpen.classList.add('opened');
+    srcInnerSearchDialog(currentSearchArrayIndex, colorType);
+}
+
 
 function dialogClose() {
     dialogOpen.close();
@@ -143,6 +159,19 @@ function srcInnerDialog(index) {
     resultRef.innerHTML = getHtmlForDetail(index, types, colorType);
 }
 
+function srcInnerSearchDialog(index) {
+    let resultRef = document.getElementById("dialog-frame");
+        let types = "";
+        let colorType = "";
+        for (let j = 0; j < dataSearchArrayPokemon[index].types.length; j++) {
+            let typeName = dataSearchArrayPokemon[index].types[j].type.name;
+            let color = getColorOfType(typeName);
+            colorType = getColorOfType(dataSearchArrayPokemon[index].types[0].type.name); //noch verbessern;
+            types += `<span style="color:${color}"> ${typeName}</span>`;
+        }
+    resultRef.innerHTML = getHtmlSearchForDetail(index, types, colorType);
+}
+
 function nextPicture() {
     if (currentArrayIndex === dataArrayPokemon.length - 1) {
         currentArrayIndex = 0;
@@ -159,6 +188,24 @@ function prevPicture() {
         currentArrayIndex--;
     }
     srcInnerDialog(currentArrayIndex);
+}
+
+function nextSearchPicture() {
+    if (currentSearchArrayIndex === dataSearchArrayPokemon.length - 1) {
+        currentSearchArrayIndex = 0;
+    } else {
+        currentSearchArrayIndex++;
+    }
+    srcInnerSearchDialog(currentSearchArrayIndex);
+}
+
+function prevSearchPicture() {
+    if (currentSearchArrayIndex=== 0) {
+        currentSearchArrayIndex = dataSearchArrayPokemon.length - 1;
+    } else {
+        currentSearchArrayIndex--;
+    }
+    srcInnerSearchDialog(currentSearchArrayIndex);
 }
 
 function searchPokemon() {
