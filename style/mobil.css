@@ -1,0 +1,172 @@
+@media (max-width: 1440px) {
+    .wrapper-content {
+        padding: 0 20px;
+    }
+
+    .top-logo {
+        padding-left: 20px;
+    }
+
+    .top-menu-right {
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 674px) {
+    .top-logo-img {
+        height: 80px;
+    }
+
+    .top-logo {
+        margin: 10px 0px;
+        padding-left: 0px;
+    }
+
+    .headline-header {
+        padding-left: 10px;
+        font-size: 24px;
+    }
+
+    .top-menu {
+        height: 148px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .top-menu-right {
+        margin-top: -20px;
+        padding-right: 0px;
+    }
+
+    #content {
+        justify-content: center;
+    }
+
+    .list-thumb {
+
+        height: 200px;
+    }
+
+    .card {
+        width: 240px;
+    }
+
+    .h2-card-title {
+        font-size: 20px;
+        padding: 10px 0 10px 0;
+    }
+
+    .current-thumb-img {
+        height: 100px;
+        width: auto;
+        filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.7));
+        margin-bottom: 0px;
+    }
+
+    .background-types {
+
+        font-size: 16px;
+    }
+
+    .load-more-button {
+        margin-bottom: 20px;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .current-detail-img {
+        width: 140px;
+        bottom: 40px;
+    }
+dialog {
+    border-radius: 30px;
+    background: var(--primary-bg-color);
+    border: none;
+    transition: all 1s ease-in;
+    width: 400px;
+    height: 500px;
+    margin: auto;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.7));
+}
+    .dialog-title {
+        font-size: 20px;
+    }
+    #dialog-content {
+    height: 100%;
+}
+table.pokemon-table td:first-child {
+    padding-bottom: 2px;
+}
+
+}
+
+@media (min-width: 510px) and (max-width: 674px) {
+    .top-menu {
+        height: 128px;
+        flex-direction: row;
+    }
+
+    .top-logo {
+        margin: 0px 0px;
+        padding-left: 20px;
+    }
+
+    .top-menu-right {
+        margin-top: 0px;
+        padding-right: 20px;
+    }
+
+}
+
+@media (min-width: 600px) and (max-width: 675px) {
+    #content {
+
+        justify-content: center;
+
+    }
+}
+
+@media (min-width: 676px) and (max-width: 994px) {
+
+    #content {
+        justify-content: center;
+    }
+
+}
+
+@media (min-width: 360px) and (max-width: 420px) {
+    .dialog-header::before {
+    background-position: right 0px bottom -263px;
+}
+}
+@media (min-width: 421px) and (max-width: 674px) {
+    .dialog-header::before {
+    background-position: right 0px bottom -285px;
+}
+}
+@media (width <=395px) {
+.tab-label {
+    position: relative;
+    display: block;
+    line-height: 2em;
+    height: 2em;
+    padding: 0 0.8em;
+    background: #4683a1;
+    border-right: 0.125rem solid #4683a1;
+    color: #fff;
+    cursor: pointer;
+    top: 0;
+    transition: all 0.25s;
+}
+.tab-switch:checked+label+.tab-content {
+    margin-top: 0px;
+}
+.tab-content {
+    /* height: 12rem; */
+    top: 2em;
+    left: 0;
+    padding: 20px;
+}
+}

@@ -32,7 +32,7 @@ function getHTMLForSearchThumbs(i, colorType,types) {
                     ${types}
                     </div>
                 </div>
-        </div>
+        </div>  
     </div>
     `;
 }
@@ -59,7 +59,6 @@ function getHtmlForDetail(i, types, colorType) {
             <div class="current-detail">
                 <img class="current-detail-img" src="${pokemon.sprites.other['official-artwork'].front_default}">
             </div>
-        
     </div>
     <div id="dialog-content">
 <div class="wrapper-tab">
@@ -83,6 +82,13 @@ function getHtmlForDetail(i, types, colorType) {
       ${pokemon.weight} hg / ${(pokemon.weight / 10).toFixed(1)} kg
       </td>
       </tr>
+      <tr>
+      <td>Abilities: 
+      </td>
+       <td>
+        ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
+      </td>
+      </tr>
       </table>
       </div>
     </div>
@@ -91,13 +97,7 @@ function getHtmlForDetail(i, types, colorType) {
       <label for="tab-2" class="tab-label">Base Stats</label>
       <div class="tab-content">
     <table class="pokemon-table">
-      <tr>
-      <td> ${pokemon.stats[0].stat.name}
-      </td>
-       <td>
-       ${pokemon.stats[0].base_stat}
-      </td>
-      </tr>
+      ${pokemon.stats.map(index => `<tr><td>${index.stat.name}:</td><td>${index.base_stat}</td></tr>`).join("")}
       </table> 
       </div>
     </div>
@@ -107,10 +107,8 @@ function getHtmlForDetail(i, types, colorType) {
       <div class="tab-content">
        <table class="pokemon-table">
       <tr>
-      <td> ${pokemon.stats[0].stat.name}
-      </td>
-       <td>
-       ${pokemon.stats[0].base_stat}
+      <td>
+      Work in progress
       </td>
       </tr>
       </table> 
@@ -143,8 +141,7 @@ function getHtmlSearchForDetail(i, types, colorType) {
         </div>
             <div class="current-detail">
                 <img class="current-detail-img" src="${pokemon.sprites.other['official-artwork'].front_default}">
-            </div>
-        
+            </div>   
     </div>
     <div id="dialog-content">
 <div class="wrapper-tab">
@@ -168,6 +165,13 @@ function getHtmlSearchForDetail(i, types, colorType) {
       ${pokemon.weight} hg / ${(pokemon.weight / 10).toFixed(1)} kg
       </td>
       </tr>
+         <tr>
+      <td>Abilities: 
+      </td>
+       <td>
+        ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
+      </td>
+      </tr>
       </table>
       </div>
     </div>
@@ -176,13 +180,7 @@ function getHtmlSearchForDetail(i, types, colorType) {
       <label for="tab-2" class="tab-label">Base Stats</label>
       <div class="tab-content">
     <table class="pokemon-table">
-      <tr>
-      <td> ${pokemon.stats[0].stat.name}
-      </td>
-       <td>
-       ${pokemon.stats[0].base_stat}
-      </td>
-      </tr>
+        ${pokemon.stats.map(index => `<tr><td>${index.stat.name}:</td><td>${index.base_stat}</td></tr>`).join("")}
       </table> 
       </div>
     </div>
@@ -190,12 +188,10 @@ function getHtmlSearchForDetail(i, types, colorType) {
       <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
       <label for="tab-3" class="tab-label">Evolution</label>
       <div class="tab-content">
-       <table class="pokemon-table">
+<table class="pokemon-table">
       <tr>
-      <td> ${pokemon.stats[0].stat.name}
-      </td>
-       <td>
-       ${pokemon.stats[0].base_stat}
+      <td>
+      Work in progress
       </td>
       </tr>
       </table> 
@@ -206,4 +202,27 @@ function getHtmlSearchForDetail(i, types, colorType) {
     </div>
 </div>
 `;
+}
+
+function getHtmlMinSearchText() {
+    return `
+    <div class="min-search">
+        <h2 class="h2-card-title">At least 3 letters</h2>
+    </div>
+    `;
+}
+function getHtmlNoType() {
+    return `
+    <div class="no-type">
+        <h2 class="h2-card-title">Couldn't find a Pokemon</h2>
+    </div>
+    `;
+}
+
+function getHtmlForError() {
+    return `
+    <div class="api-error">
+        <h2 class="h2-card-title">Error with the connection to the server<br>https://pokeapi.co/</h2>
+    </div>
+    `;
 }

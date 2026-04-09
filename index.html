@@ -7,8 +7,8 @@
     <title>Pokedex</title>
     <link rel="stylesheet" href="./style/standard.css">
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/mobil.css">
     <link rel="stylesheet" href="./style/dialog.css">
+    <link rel="stylesheet" href="./style/mobil.css">
     <link rel="stylesheet" href="./style/all.min.css" />
     <script src="./scripts/script.js" defer></script>
     <script src="./scripts/template.js" defer></script>
@@ -41,6 +41,9 @@
                 </section>
                 <div id="load-more">
                     <button class="load-more-button" onclick="morePokemonData()">Load more...</button>
+                </div>
+                  <div id="loaded-all">
+                    <button class="load-more-button" onclick="renderThumb();scrollToBottom()">Back to all Loaded Pokemons</button>
                 </div>
                 <!-- #endregion -->
             </section>
