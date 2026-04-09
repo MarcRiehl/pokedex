@@ -34,19 +34,12 @@ async function fetchDetailDataJson() {
             let newDetailFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${currentIndex}/`);
             let responseDetailAsJson = await newDetailFetch.json();
             dataArrayPokemon.push(responseDetailAsJson);
-            // dataArrayPokemon.push(
-            //     {
-            //         name: getFetchData.results[index].name,
-            //         url: getFetchData.results[index].url
-            //     }
-            // )
         }
         if (currentIndex == 20) {
             renderThumb();
         } else {
             startLoadingScreen(startIndex);
         }
-        // return dataArrayPokemon;
     } catch (error) {
         getError();
     }
@@ -72,7 +65,6 @@ function endLoadingScreen() {
 
 function morePokemonData() {
     fetchDetailDataJson();
-
 }
 
 function renderThumb() {
@@ -89,6 +81,11 @@ function renderThumb() {
         resultRef.innerHTML += getHTMLForThumbs(i, colorType, types);
     }
 }
+
+function renderColorTypes(i){
+
+}
+
 
 function renderMoreThumb(startIndex) {
     let resultRef = document.getElementById("content");
@@ -217,7 +214,7 @@ function searchPokemon() {
         return;
     }
     let results = dataArrayPokemon.filter(element =>
-        element.name.toLowerCase().includes(inputField) //returns true if a string contains a specified string.
+        element.name.toLowerCase().includes(inputField)
     );
 
     //  console.log(results);

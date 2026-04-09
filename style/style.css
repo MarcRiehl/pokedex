@@ -81,7 +81,7 @@ body.no-scroll {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.85) url("../assets/img/background-loading-screen.png") center center/cover no-repeat;
   mix-blend-mode: normal;
   opacity: 1;
   display: flex;
@@ -94,8 +94,8 @@ body.no-scroll {
 }
 
 #overlay img {
-  width: 140px;
-  height: 140px;
+  width: 200px;
+  height: 200px;
   animation: rotate 2s linear infinite;
 }
 
