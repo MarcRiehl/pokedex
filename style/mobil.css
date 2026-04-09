@@ -100,6 +100,12 @@ table.pokemon-table td:first-child {
     padding-bottom: 2px;
 }
 
+#overlay img {
+  width: 120px;
+  height: 120px;
+  animation: rotate 2s linear infinite;
+}
+
 }
 
 @media (min-width: 510px) and (max-width: 674px) {

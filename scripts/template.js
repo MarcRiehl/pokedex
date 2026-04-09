@@ -69,24 +69,35 @@ function getHtmlForDetail(i, types, colorType) {
                         <div class="tab-content">
                             <table class="pokemon-table">
                                 <tr>
-                                    <td>Height:
+                                    <td>
+                                    Height:
                                     </td>
                                     <td>
                                         ${pokemon.height} dm / ${(pokemon.height * 10).toFixed(1)} cm
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Weight:
+                                    <td>
+                                    Weight:
                                     </td>
                                     <td>
                                         ${pokemon.weight} hg / ${(pokemon.weight / 10).toFixed(1)} kg
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Abilities:
+                                    <td>
+                                    Abilities:
                                     </td>
                                     <td>
                                         ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    Base-Exp.:
+                                    </td>
+                                    <td>
+                                        ${pokemon.base_experience}
                                     </td>
                                 </tr>
                             </table>
@@ -174,6 +185,14 @@ function getHtmlSearchForDetail(i, types, colorType) {
                                     </td>
                                     <td>
                                         ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    Base-Exp.:
+                                    </td>
+                                    <td>
+                                        ${pokemon.base_experience}
                                     </td>
                                 </tr>
                             </table>

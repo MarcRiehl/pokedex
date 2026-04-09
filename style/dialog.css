@@ -229,5 +229,5 @@ table.pokemon-table td:first-child {
 
 table.pokemon-table td:last-of-type {
   text-align: right;
-  vertical-align: baseline;
+  vertical-align: middle;
 }
