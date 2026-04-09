@@ -70,7 +70,7 @@ function getHtmlForDetail(i, types, colorType) {
                             <table class="pokemon-table">
                                 <tr>
                                     <td>
-                                    Height:
+                                        Height:
                                     </td>
                                     <td>
                                         ${pokemon.height} dm / ${(pokemon.height * 10).toFixed(1)} cm
@@ -78,7 +78,7 @@ function getHtmlForDetail(i, types, colorType) {
                                 </tr>
                                 <tr>
                                     <td>
-                                    Weight:
+                                        Weight:
                                     </td>
                                     <td>
                                         ${pokemon.weight} hg / ${(pokemon.weight / 10).toFixed(1)} kg
@@ -86,7 +86,7 @@ function getHtmlForDetail(i, types, colorType) {
                                 </tr>
                                 <tr>
                                     <td>
-                                    Abilities:
+                                        Abilities:
                                     </td>
                                     <td>
                                         ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
@@ -94,7 +94,7 @@ function getHtmlForDetail(i, types, colorType) {
                                 </tr>
                                 <tr>
                                     <td>
-                                    Base-Exp.:
+                                        Base-Exp.:
                                     </td>
                                     <td>
                                         ${pokemon.base_experience}
@@ -108,11 +108,19 @@ function getHtmlForDetail(i, types, colorType) {
                         <label for="tab-2" class="tab-label">Base Stats</label>
                         <div class="tab-content">
                             <table class="pokemon-table">
-                                ${pokemon.stats.map(index => `<tr>
+                                ${pokemon.stats.map((index) => `<tr>
                                     <td>${index.stat.name}:</td>
-                                    <td>${index.base_stat}</td>
+                                    <td>
+                                        <div class="show-stats">
+                                            <div class="stat-value">${index.base_stat}</div>
+                                            <div class="stat-bar" style="--value:${index.base_stat}; --max:255;">
+                                                <span class="stat-label">255</span>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>`).join("")}
                             </table>
+
                         </div>
                     </div>
                     <div class="tab">
@@ -159,57 +167,68 @@ function getHtmlSearchForDetail(i, types, colorType) {
             </div>
         </div>
         <div id="dialog-content">
-            <div class="wrapper-tab">
-                <div class="tabs">
-                    <div class="tab">
-                        <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-                        <label for="tab-1" class="tab-label">About</label>
-                        <div class="tab-content">
-                            <table class="pokemon-table">
-                                <tr>
-                                    <td>Height:
-                                    </td>
-                                    <td>
-                                        ${pokemon.height} dm / ${(pokemon.height * 10).toFixed(1)} cm
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Weight:
-                                    </td>
-                                    <td>
-                                        ${pokemon.weight} hg / ${(pokemon.weight / 10).toFixed(1)} kg
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Abilities:
-                                    </td>
-                                    <td>
-                                        ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    Base-Exp.:
-                                    </td>
-                                    <td>
-                                        ${pokemon.base_experience}
-                                    </td>
-                                </tr>
-                            </table>
+                <div class="wrapper-tab">
+                    <div class="tabs">
+                        <div class="tab">
+                            <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+                            <label for="tab-1" class="tab-label">About</label>
+                            <div class="tab-content">
+                                <table class="pokemon-table">
+                                    <tr>
+                                        <td>
+                                            Height:
+                                        </td>
+                                        <td>
+                                            ${pokemon.height} dm / ${(pokemon.height * 10).toFixed(1)} cm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Weight:
+                                        </td>
+                                        <td>
+                                            ${pokemon.weight} hg / ${(pokemon.weight / 10).toFixed(1)} kg
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Abilities:
+                                        </td>
+                                        <td>
+                                            ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Base-Exp.:
+                                        </td>
+                                        <td>
+                                            ${pokemon.base_experience}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab">
-                        <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-                        <label for="tab-2" class="tab-label">Base Stats</label>
-                        <div class="tab-content">
-                            <table class="pokemon-table">
-                                ${pokemon.stats.map(index => `<tr>
-                                    <td>${index.stat.name}:</td>
-                                    <td>${index.base_stat}</td>
-                                </tr>`).join("")}
-                            </table>
+                        <div class="tab">
+                            <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+                            <label for="tab-2" class="tab-label">Base Stats</label>
+                            <div class="tab-content">
+                                <table class="pokemon-table">
+                                    ${pokemon.stats.map((index) => `<tr>
+                                        <td>${index.stat.name}:</td>
+                                        <td>
+                                            <div class="show-stats">
+                                                <div class="stat-value">${index.base_stat}</div>
+                                                <div class="stat-bar" style="--value:${index.base_stat}; --max:255;">
+                                                    <span class="stat-label">255</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>`).join("")}
+                                </table>
+                                    
+                            </div>
                         </div>
-                    </div>
                     <div class="tab">
                         <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
                         <label for="tab-3" class="tab-label">Evolution</label>

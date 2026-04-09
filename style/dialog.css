@@ -45,18 +45,13 @@ dialog.opened::backdrop {
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   transition: all 250ms ease-in-out;
-  overflow: hidden;
+
   height: 100%;
 }
 
 .dialog-header {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column; */
   padding: 10px 20px 10px 20px;
   min-height: 62px;
-  /* background-image: url("../assets/img/pokemon-ball.png") center center/cover no-repeat; */
 }
 
 .dialog-header::before {
@@ -136,11 +131,9 @@ dialog.opened::backdrop {
 }
 
 .wrapper-tab {
-  width: 100%;
-  margin: 0 auto;
   display: flex;
   justify-content: center;
-      padding-top: 10px;
+  padding-top: 10px;
 
 }
 
@@ -162,10 +155,6 @@ dialog.opened::backdrop {
 
 .tabs::after {
   clear: both;
-}
-
-.tab {
-  float: left;
 }
 
 .tab-switch {
@@ -228,6 +217,53 @@ table.pokemon-table td:first-child {
 }
 
 table.pokemon-table td:last-of-type {
-  text-align: right;
+  width: 100%;
   vertical-align: middle;
+  padding: 0px 8px;
+}
+
+.show-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-value {
+  display: inline-block;
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+.stat-bar {
+  --max: 255;
+  width: 180px;
+  height: 20px;
+  background: #e6e6e6;
+  border-radius: 10px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.stat-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: calc(var(--value) / var(--max) * 100%);
+  background: linear-gradient(90deg, #103d50, #4683a1);
+  transition: width 350ms ease;
+}
+
+.stat-bar .stat-label {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #2e2e2e;
+  font-weight: 600;
+  z-index: 1;
+  pointer-events: none;
 }

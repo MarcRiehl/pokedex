@@ -105,7 +105,11 @@ table.pokemon-table td:first-child {
   height: 120px;
   animation: rotate 2s linear infinite;
 }
-
+.stat-bar {
+  --max: 255;
+  width: 166px;
+  height: 16px;
+}
 }
 
 @media (min-width: 510px) and (max-width: 674px) {
@@ -147,7 +151,12 @@ table.pokemon-table td:first-child {
     background-position: right 0px bottom -263px;
 }
 }
-@media (min-width: 421px) and (max-width: 674px) {
+@media (min-width: 411px) and (max-width: 674px) {
+        dialog {
+        width: 400px;
+        height: 540px;
+
+    }
     .dialog-header::before {
     background-position: right 0px bottom -285px;
 }
@@ -156,7 +165,7 @@ table.pokemon-table td:first-child {
 }
 
 }
-@media (width <=395px) {
+@media (width <=410px) {
     .wrapper-tab {
         padding-top: 0;
     }
@@ -177,6 +186,11 @@ table.pokemon-table td:first-child {
     /* height: 12rem; */
     top: 2em;
     left: 0;
-    padding: 20px;
+    padding: 10px;
 }
+    .stat-bar {
+        width: 115px;
+        height: 16px;
+   
+    }
 }

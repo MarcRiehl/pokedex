@@ -5,6 +5,7 @@
   position: sticky;
   top: 0;
   z-index: 999;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.65));
 }
 
 .wrapper-content {
@@ -25,9 +26,7 @@
 .wrapper-footer {
   display: flex;
   justify-content: center;
-  background-color: var(--second-bg-color);
-  background: var(--second-bg-color) url("../assets/img/back-footer.svg") center center/cover no-repeat;
-
+  background-color: var(--primary-bg-color);
 }
 
 header {
@@ -61,7 +60,7 @@ header {
 .top-logo-img {
   width: auto;
   height: 100px;
-
+ filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.7));
 }
 
 .top-menu-right {
@@ -115,7 +114,7 @@ body.no-scroll {
 
 
 main {
-  background-color: var(--second-bg-color);
+  background: var(--second-bg-color) url("../assets/img/background-content.jpg") center center/cover repeat-y;
 }
 
 .footer-flex {
@@ -162,10 +161,10 @@ footer {
 }
 
 .card {
-  background-color: #0f3342;
   height: auto;
   width: 300px;
   cursor: pointer;
+  filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.7));
 }
 
 .card:hover {
@@ -192,11 +191,9 @@ footer {
 }
 
 .list-thumb-img {
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .current-thumb-img {
@@ -216,5 +213,4 @@ footer {
   border: 1px solid var(--primary-bg-color);
   margin-bottom: 20px;
   text-align: center;
-
 }
