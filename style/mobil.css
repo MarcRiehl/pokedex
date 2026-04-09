@@ -98,6 +98,7 @@ dialog {
 }
 table.pokemon-table td:first-child {
     padding-bottom: 2px;
+    padding-right: 0px;
 }
 
 #overlay img {
