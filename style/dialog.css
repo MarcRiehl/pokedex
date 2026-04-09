@@ -75,6 +75,7 @@ dialog.opened::backdrop {
   font-size: 24px;
   text-transform: uppercase;
   line-height: 120%;
+  position: relative;
 }
 
 .dialog-headline {
@@ -96,7 +97,7 @@ dialog.opened::backdrop {
 
 #dialog-content {
   background-color: #FFF;
-  height: 80%;
+  height: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
@@ -106,17 +107,6 @@ dialog.opened::backdrop {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  /* padding: 20px 20px; */
-}
-
-.previous-picture {
-  /* background-image: url("../assets/img/arrow-black.png");
-  transform: scaleX(-1);
-  background-size: cover;
-  display: block; */
-  /* width: 20px;
-  height: 24px; */
-
 }
 
 .previous-picture::before {
@@ -150,6 +140,7 @@ dialog.opened::backdrop {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+      padding-top: 10px;
 
 }
 
@@ -187,9 +178,8 @@ dialog.opened::backdrop {
   line-height: 2.75em;
   height: 3em;
   padding: 0 1.618em;
-  background: #4683a1;
-  border-right: 0.125rem solid #4683a1;
-  color: #fff;
+
+  color: #3d3d3d;
   cursor: pointer;
   top: 0;
   transition: all 0.25s;
@@ -197,10 +187,10 @@ dialog.opened::backdrop {
 
 .tab-label:hover {
   filter: brightness(120%);
+  color: #919191;
 }
 
 .tab-content {
-  /* height: 12rem; */
   position: absolute;
   z-index: 1;
   top: 2.75em;
@@ -213,10 +203,8 @@ dialog.opened::backdrop {
 }
 
 .tab-switch:checked+.tab-label {
-  background: #5ba7cc;
   color: #2c3e50;
-  border-bottom: 0;
-  border-right: 0.125rem solid #5ba7cc;
+  border-bottom: 2px solid #5ba7cc;
   transition: all 0.35s;
   z-index: 1;
 }

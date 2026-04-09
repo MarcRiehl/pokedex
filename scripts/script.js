@@ -34,15 +34,10 @@ async function fetchDetailDataJson() {
             let responseDetailAsJson = await newDetailFetch.json();
             dataArrayPokemon.push(responseDetailAsJson);
         }
-        if (currentIndex == 20) {
-            renderThumb();
-        } else {
-            startLoadingScreen(startIndex);
-        }
+        currentIndex == 20 ? renderThumb() : startLoadingScreen(startIndex);
     } catch (error) {
         getError();
     }
-
 }
 
 function startLoadingScreen(startIndex) {
@@ -66,25 +61,27 @@ function morePokemonData() {
 }
 
 function renderThumb() {
-    resultRef.innerHTML = "";
-    document.getElementById("load-more").classList.remove("d-none");
-    document.getElementById("loaded-all").classList.add("d-none");
-    let resultInputField = document.getElementById("search-pokemon");
-    resultInputField.value = "";
+    resetView();
     for (let i = 0; i < dataArrayPokemon.length; i++) {
         let types = "";
         let colorType = "";
         for (let j = 0; j < dataArrayPokemon[i].types.length; j++) {
             let typeName = dataArrayPokemon[i].types[j].type.name;
             let color = getColorOfType(typeName);
-            colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern;
+            colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name);
             types += `<span style="color:${color}"> ${typeName}</span>`;
         }
         resultRef.innerHTML += getHTMLForThumbs(i, colorType, types);
     }
 }
-function renderColorTypes(i) {
+
+function resetView() {
+    resultRef.innerHTML = "";
+    document.getElementById("load-more").classList.remove("d-none");
+    document.getElementById("loaded-all").classList.add("d-none");
+    document.getElementById("search-pokemon").value = "";
 }
+
 
 function renderMoreThumb(startIndex) {
     for (let i = startIndex; i < dataArrayPokemon.length; i++) {
@@ -93,7 +90,7 @@ function renderMoreThumb(startIndex) {
         for (let j = 0; j < dataArrayPokemon[i].types.length; j++) {
             let typeName = dataArrayPokemon[i].types[j].type.name;
             let color = getColorOfType(typeName);
-            colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name); //noch verbessern;
+            colorType = getColorOfType(dataArrayPokemon[i].types[0].type.name);
             types += `<span style="color:${color}"> ${typeName}</span>`;
         }
         resultRef.innerHTML += getHTMLForThumbs(i, colorType, types);
@@ -108,7 +105,7 @@ function renderSearchThumb() {
         for (let j = 0; j < dataSearchArrayPokemon[i].types.length; j++) {
             let typeName = dataSearchArrayPokemon[i].types[j].type.name;
             let color = getColorOfType(typeName);
-            colorType = getColorOfType(dataSearchArrayPokemon[i].types[0].type.name); //noch verbessern;
+            colorType = getColorOfType(dataSearchArrayPokemon[i].types[0].type.name);
             types += `<span style="color:${color}"> ${typeName}</span>`;
         }
         resultRef.innerHTML += getHTMLForSearchThumbs(i, colorType, types);
@@ -121,14 +118,14 @@ function getError() {
 }
 
 function openPicture(index, colorType) {
-    currentArrayIndex = index; //neu deklarieren für nextPicture()
+    currentArrayIndex = index;
     dialogOpen.showModal();
     dialogOpen.classList.add('opened');
     srcInnerDialog(currentArrayIndex, colorType);
 }
 
 function openSearchPicture(index, colorType) {
-    currentSearchArrayIndex = index; //neu deklarieren für nextPicture()
+    currentSearchArrayIndex = index;
     dialogOpen.showModal();
     dialogOpen.classList.add('opened');
     srcInnerSearchDialog(currentSearchArrayIndex, colorType);
@@ -147,7 +144,7 @@ function srcInnerDialog(index) {
     for (let j = 0; j < dataArrayPokemon[index].types.length; j++) {
         let typeName = dataArrayPokemon[index].types[j].type.name;
         let color = getColorOfType(typeName);
-        colorType = getColorOfType(dataArrayPokemon[index].types[0].type.name); //noch verbessern;
+        colorType = getColorOfType(dataArrayPokemon[index].types[0].type.name);
         types += `<span style="color:${color}"> ${typeName}</span>`;
     }
     resultRef.innerHTML = getHtmlForDetail(index, types, colorType);
@@ -160,7 +157,7 @@ function srcInnerSearchDialog(index) {
     for (let j = 0; j < dataSearchArrayPokemon[index].types.length; j++) {
         let typeName = dataSearchArrayPokemon[index].types[j].type.name;
         let color = getColorOfType(typeName);
-        colorType = getColorOfType(dataSearchArrayPokemon[index].types[0].type.name); //noch verbessern;
+        colorType = getColorOfType(dataSearchArrayPokemon[index].types[0].type.name);
         types += `<span style="color:${color}"> ${typeName}</span>`;
     }
     resultRef.innerHTML = getHtmlSearchForDetail(index, types, colorType);
@@ -207,14 +204,13 @@ function searchPokemon() {
     document.getElementById("loaded-all").classList.remove("d-none");
     let resultInputField = document.getElementById("search-pokemon");
     let inputField = resultInputField.value.toLowerCase().trim();
-    if (inputField.length < 3) {
-        resultRef.innerHTML = getHtmlMinSearchText();
+      if (!checkInputField(inputField)) {
         return;
     }
     let results = dataArrayPokemon.filter(element =>
         element.name.toLowerCase().includes(inputField)
     );
-    if (results == 0) {
+    if (results.length === 0) {
         resultRef.innerHTML = getHtmlNoType();
         return;
     } else {
@@ -223,49 +219,15 @@ function searchPokemon() {
     renderSearchThumb();
 }
 
+function checkInputField(inputField) {
+    if (inputField.length < 3) {
+        resultRef.innerHTML = getHtmlMinSearchText();
+        return false;
+    }
+    return true;
+}
+
 function scrollToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
 }
 
-function getColorOfType(type) {
-    switch (type) {
-        case "normal":
-            return "#A8A77A";
-        case "fire":
-            return "#EE8130";
-        case "water":
-            return "#6390F0";
-        case "electric":
-            return "#F7D02C";
-        case "grass":
-            return "#7AC74C";
-        case "ice":
-            return "#96D9D6";
-        case "fighting":
-            return "#C22E28";
-        case "poison":
-            return "#A33EA1";
-        case "ground":
-            return "#E2BF65";
-        case "flying":
-            return "#A98FF3";
-        case "psychic":
-            return "#F95587";
-        case "bug":
-            return "#A6B91A";
-        case "rock":
-            return "#B6A136";
-        case "ghost":
-            return "#735797";
-        case "dragon":
-            return "#6F35FC";
-        case "dark":
-            return "#705746";
-        case "steel":
-            return "#B7B7CE";
-        case "fairy":
-            return "#D685AD";
-        default:
-            return "#A8A77A";
-    }
-}

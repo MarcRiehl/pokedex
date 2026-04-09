@@ -145,18 +145,22 @@ table.pokemon-table td:first-child {
     .dialog-header::before {
     background-position: right 0px bottom -285px;
 }
+.wrapper-tab {
+    padding-top: 0px;
+}
+
 }
 @media (width <=395px) {
+    .wrapper-tab {
+        padding-top: 0;
+    }
+
 .tab-label {
     position: relative;
     display: block;
     line-height: 2em;
     height: 2em;
     padding: 0 0.8em;
-    background: #4683a1;
-    border-right: 0.125rem solid #4683a1;
-    color: #fff;
-    cursor: pointer;
     top: 0;
     transition: all 0.25s;
 }
