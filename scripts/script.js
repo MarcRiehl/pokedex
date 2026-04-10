@@ -49,7 +49,7 @@ function startLoadingScreen() {
     document.body.classList.add("no-scroll");
     setTimeout(() => {
         endLoadingScreen();
-    }, 500);
+    }, 3000);
 }
 
 function endLoadingScreen() {
@@ -144,8 +144,9 @@ function dialogClose() {
 }
 
 dialog.addEventListener("close", () => {
-    document.body.classList.remove("dialog-open");
     dialogOpen.close();
+    dialogOpen.classList.remove('opened');
+    document.body.classList.remove("dialog-open");
 });
 
 function srcInnerDialog(index) {
