@@ -6,6 +6,7 @@ let currentArrayIndex = currentIndex;
 let currentSearchArrayIndex = 0;
 let dialogOpen = document.getElementById('dialog-frame');
 const overlay = document.getElementById('overlay');
+const dialog = document.getElementById("dialog-frame");
 let resultRef = document.getElementById("content");
 document.getElementById("year").innerHTML = new Date().getFullYear();
 
@@ -48,7 +49,7 @@ function startLoadingScreen() {
     document.body.classList.add("no-scroll");
     setTimeout(() => {
         endLoadingScreen();
-    }, 3000);
+    }, 500);
 }
 
 function endLoadingScreen() {
@@ -125,6 +126,7 @@ function openPicture(index, colorType) {
     dialogOpen.showModal();
     dialogOpen.classList.add('opened');
     srcInnerDialog(currentArrayIndex, colorType);
+    document.body.classList.add("dialog-open");
 }
 
 function openSearchPicture(index, colorType) {
@@ -132,12 +134,19 @@ function openSearchPicture(index, colorType) {
     dialogOpen.showModal();
     dialogOpen.classList.add('opened');
     srcInnerDialog(currentSearchArrayIndex, colorType);
+    document.body.classList.add("dialog-open");
 }
 
 function dialogClose() {
     dialogOpen.close();
     dialogOpen.classList.remove('opened');
+    document.body.classList.remove("dialog-open");
 }
+
+dialog.addEventListener("close", () => {
+    document.body.classList.remove("dialog-open");
+    dialogOpen.close();
+});
 
 function srcInnerDialog(index) {
     let resultRef = document.getElementById("dialog-frame");

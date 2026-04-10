@@ -7,6 +7,7 @@ dialog {
   height: 666px;
   margin: auto;
   filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.7));
+  pointer-events: auto;
 }
 
 .dialog-frame-open {
@@ -22,19 +23,14 @@ dialog {
   padding: 0 20px;
 }
 
-.dialog.opened {
-  transform: translateY(0px);
-  transition: all 250ms ease-in;
-
-}
 
 html:has(dialog[open]) {
   overflow: hidden;
-
 }
 
-html:has(dialog[open]) #content {
-  pointer-events: none;
+body.dialog-open {
+  overflow: hidden;
+  width: 100%;
 }
 
 dialog::backdrop {
