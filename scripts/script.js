@@ -12,6 +12,7 @@ document.getElementById("year").innerHTML = new Date().getFullYear();
 
 function ini() {
     fetchDetailDataJson();
+    startLoadingScreen();
 }
 
 async function fetchDataJson() {
@@ -26,7 +27,6 @@ async function fetchDataJson() {
 
 async function fetchDetailDataJson() {
     try {
-        startLoadingScreen();
         let startIndex = currentIndex;
         let getFetchData = await fetchDataJson();
         let getFetchDataNew = getFetchData.results.length + currentIndex;
