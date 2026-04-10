@@ -49,7 +49,7 @@ function startLoadingScreen(startIndex) {
     setTimeout(() => {
         renderMoreThumb(startIndex);
         endLoadingScreen();
-    }, 3000);
+    }, 500);
 }
 
 function endLoadingScreen() {

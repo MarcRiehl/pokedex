@@ -44,8 +44,17 @@ function getHtmlForDetail(i, types, colorType) {
     <div class="dialog-frame-open">
         <div class="dialog-header" style="background: ${colorType}; position: relative;">
             <div id="dialog-picture-control">
-                <button id="previous-picture" onclick="prevPicture(${i})"><span class="previous-picture"></span></button>
-                <button id="next-picture" onclick="nextPicture(${i})"><span class="next-picture"></span></button>
+                <div>
+                    <button id="previous-picture" onclick="prevPicture(${i})"><span class="previous-picture"></span>
+                    </button>
+                    <button id="next-picture" onclick="nextPicture(${i})"><span class="next-picture"></span>
+                    </button>
+                </div>
+                <div>
+                    <button aria-label="Dialog schliessen" id="dialog-close" onclick="dialogClose()"
+                    aria-controls="dialog-frame"><span class="close-button"></span>
+                    </button>
+                </div>
             </div>
             <div class="dialog-headline">
                 <div class="dialog-name">
@@ -120,20 +129,6 @@ function getHtmlForDetail(i, types, colorType) {
                                     </td>
                                 </tr>`).join("")}
                             </table>
-
-                        </div>
-                    </div>
-                    <div class="tab">
-                        <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
-                        <label for="tab-3" class="tab-label">Evolution</label>
-                        <div class="tab-content">
-                            <table class="pokemon-table">
-                                <tr>
-                                    <td>
-                                        Work in progress
-                                    </td>
-                                </tr>
-                            </table>
                         </div>
                     </div>
                 </div>
@@ -149,9 +144,17 @@ function getHtmlSearchForDetail(i, types, colorType) {
     <div class="dialog-frame-open">
         <div class="dialog-header" style="background: ${colorType}; position: relative;">
             <div id="dialog-picture-control">
-                <button id="previous-picture" onclick="prevPicture()"><span
-                        class="previous-picture"></span></button>
-                <button id="next-picture" onclick="nextPicture()"><span class="next-picture"></span></button>
+                <div>
+                    <button id="previous-picture" onclick="prevPicture(${i})"><span class="previous-picture"></span>
+                    </button>
+                    <button id="next-picture" onclick="nextPicture(${i})"><span class="next-picture"></span>
+                    </button>
+                </div>
+                <div>
+                    <button aria-label="Dialog schliessen" id="dialog-close" onclick="dialogClose()"
+                    aria-controls="dialog-frame"><span class="close-button"></span>
+                    </button>
+                </div>
             </div>
             <div class="dialog-headline">
                 <div class="dialog-name">
@@ -173,72 +176,58 @@ function getHtmlSearchForDetail(i, types, colorType) {
                             <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
                             <label for="tab-1" class="tab-label">About</label>
                             <div class="tab-content">
-                                <table class="pokemon-table">
-                                    <tr>
-                                        <td>
-                                            Height:
-                                        </td>
-                                        <td>
-                                            ${pokemon.height} dm / ${(pokemon.height * 10).toFixed(1)} cm
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Weight:
-                                        </td>
-                                        <td>
-                                            ${pokemon.weight} hg / ${(pokemon.weight / 10).toFixed(1)} kg
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Abilities:
-                                        </td>
-                                        <td>
-                                            ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Base-Exp.:
-                                        </td>
-                                        <td>
-                                            ${pokemon.base_experience}
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab">
-                            <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-                            <label for="tab-2" class="tab-label">Base Stats</label>
-                            <div class="tab-content">
-                                <table class="pokemon-table">
-                                    ${pokemon.stats.map((index) => `<tr>
-                                        <td>${index.stat.name}:</td>
-                                        <td>
-                                            <div class="show-stats">
-                                                <div class="stat-value">${index.base_stat}</div>
-                                                <div class="stat-bar" style="--value:${index.base_stat}; --max:255;">
-                                                    <span class="stat-label">255</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>`).join("")}
-                                </table>
-                                    
-                            </div>
-                        </div>
-                    <div class="tab">
-                        <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
-                        <label for="tab-3" class="tab-label">Evolution</label>
-                        <div class="tab-content">
                             <table class="pokemon-table">
                                 <tr>
                                     <td>
-                                        Work in progress
+                                        Height:
+                                    </td>
+                                    <td>
+                                        ${pokemon.height} dm / ${(pokemon.height * 10).toFixed(1)} cm
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        Weight:
+                                    </td>
+                                    <td>
+                                        ${pokemon.weight} hg / ${(pokemon.weight / 10).toFixed(1)} kg
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Abilities:
+                                    </td>
+                                    <td>
+                                        ${pokemon.abilities.map(index => `${index.ability.name}`).join(" / ")}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Base-Exp.:
+                                    </td>
+                                    <td>
+                                        ${pokemon.base_experience}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+                        <label for="tab-2" class="tab-label">Base Stats</label>
+                        <div class="tab-content">
+                            <table class="pokemon-table">
+                                ${pokemon.stats.map((index) => `<tr>
+                                    <td>${index.stat.name}:</td>
+                                    <td>
+                                        <div class="show-stats">
+                                            <div class="stat-value">${index.base_stat}</div>
+                                            <div class="stat-bar" style="--value:${index.base_stat}; --max:255;">
+                                                <span class="stat-label">255</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>`).join("")}
                             </table>
                         </div>
                     </div>
