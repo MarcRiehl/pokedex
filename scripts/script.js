@@ -10,7 +10,7 @@ let resultRef = document.getElementById("content");
 document.getElementById("year").innerHTML = new Date().getFullYear();
 
 
-function ini() {
+function init() {
     startLoadingScreen();
     fetchDetailDataJson();
 }
@@ -64,6 +64,7 @@ function morePokemonData() {
 
 function renderThumb() {
     resetView();
+
     for (let i = 0; i < dataArrayPokemon.length; i++) {
         let types = "";
         let colorType = "";
@@ -78,6 +79,7 @@ function renderThumb() {
 }
 
 function resetView() {
+    dataSearchArrayPokemon = [];
     resultRef.innerHTML = "";
     document.getElementById("load-more").classList.remove("d-none");
     document.getElementById("loaded-all").classList.add("d-none");
@@ -130,7 +132,7 @@ function openSearchPicture(index, colorType) {
     currentSearchArrayIndex = index;
     dialogOpen.showModal();
     dialogOpen.classList.add('opened');
-    srcInnerSearchDialog(currentSearchArrayIndex, colorType);
+    srcInnerDialog(currentSearchArrayIndex, colorType);
 }
 
 
@@ -143,27 +145,21 @@ function srcInnerDialog(index) {
     let resultRef = document.getElementById("dialog-frame");
     let types = "";
     let colorType = "";
-    for (let j = 0; j < dataArrayPokemon[index].types.length; j++) {
-        let typeName = dataArrayPokemon[index].types[j].type.name;
+    let passOnArray = dataSearchArrayPokemon.length > 1 ? dataSearchArrayPokemon : dataArrayPokemon;
+    for (let j = 0; j < passOnArray[index].types.length; j++) {
+        let typeName = passOnArray[index].types[j].type.name;
         let color = getColorOfType(typeName);
-        colorType = getColorOfType(dataArrayPokemon[index].types[0].type.name);
+        colorType = getColorOfType(passOnArray[index].types[0].type.name);
         types += `<span style="color:${color}"> ${typeName}</span>`;
     }
-    resultRef.innerHTML = getHtmlForDetail(index, types, colorType);
+    if (passOnArray == dataArrayPokemon) {
+        resultRef.innerHTML = getHtmlForDetail(index, types, colorType);
+    } else {
+        resultRef.innerHTML = getHtmlSearchForDetail(index, types, colorType);
+    }
+
 }
 
-function srcInnerSearchDialog(index) {
-    let resultRef = document.getElementById("dialog-frame");
-    let types = "";
-    let colorType = "";
-    for (let j = 0; j < dataSearchArrayPokemon[index].types.length; j++) {
-        let typeName = dataSearchArrayPokemon[index].types[j].type.name;
-        let color = getColorOfType(typeName);
-        colorType = getColorOfType(dataSearchArrayPokemon[index].types[0].type.name);
-        types += `<span style="color:${color}"> ${typeName}</span>`;
-    }
-    resultRef.innerHTML = getHtmlSearchForDetail(index, types, colorType);
-}
 
 function nextPicture() {
     if (currentArrayIndex === dataArrayPokemon.length - 1) {
@@ -189,7 +185,7 @@ function nextSearchPicture() {
     } else {
         currentSearchArrayIndex++;
     }
-    srcInnerSearchDialog(currentSearchArrayIndex);
+    srcInnerDialog(currentSearchArrayIndex);
 }
 
 function prevSearchPicture() {
@@ -198,7 +194,7 @@ function prevSearchPicture() {
     } else {
         currentSearchArrayIndex--;
     }
-    srcInnerSearchDialog(currentSearchArrayIndex);
+    srcInnerDialog(currentSearchArrayIndex);
 }
 
 function searchPokemon() {
@@ -206,7 +202,7 @@ function searchPokemon() {
     document.getElementById("loaded-all").classList.remove("d-none");
     let resultInputField = document.getElementById("search-pokemon");
     let inputField = resultInputField.value.toLowerCase().trim();
-      if (!checkInputField(inputField)) {
+    if (!checkInputField(inputField)) {
         return;
     }
     let results = dataArrayPokemon.filter(element =>
