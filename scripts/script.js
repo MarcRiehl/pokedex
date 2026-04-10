@@ -11,8 +11,8 @@ document.getElementById("year").innerHTML = new Date().getFullYear();
 
 
 function ini() {
-    fetchDetailDataJson();
     startLoadingScreen();
+    fetchDetailDataJson();
 }
 
 async function fetchDataJson() {
