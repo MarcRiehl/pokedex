@@ -36,18 +36,17 @@ async function fetchDetailDataJson() {
             let responseDetailAsJson = await newDetailFetch.json();
             dataArrayPokemon.push(responseDetailAsJson);
         }
-        currentIndex == 20 ? renderThumb() : startLoadingScreen(startIndex);
+        currentIndex == 20 ? renderThumb() : renderMoreThumb(startIndex);
     } catch (error) {
         getError();
     }
 }
 
-function startLoadingScreen(startIndex) {
+function startLoadingScreen() {
     overlay.classList.add("overlay");
     overlay.classList.remove("hidden");
     document.body.classList.add("no-scroll");
     setTimeout(() => {
-        renderMoreThumb(startIndex);
         endLoadingScreen();
     }, 500);
 }
@@ -60,11 +59,11 @@ function endLoadingScreen() {
 
 function morePokemonData() {
     fetchDetailDataJson();
+    startLoadingScreen();
 }
 
 function renderThumb() {
     resetView();
-
     for (let i = 0; i < dataArrayPokemon.length; i++) {
         let types = "";
         let colorType = "";
