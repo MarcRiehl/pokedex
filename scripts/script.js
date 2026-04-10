@@ -26,6 +26,7 @@ async function fetchDataJson() {
 
 async function fetchDetailDataJson() {
     try {
+        startLoadingScreen();
         let startIndex = currentIndex;
         let getFetchData = await fetchDataJson();
         let getFetchDataNew = getFetchData.results.length + currentIndex;
