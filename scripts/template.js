@@ -149,9 +149,9 @@ function getHtmlSearchForDetail(i, types, colorType) {
     <div class="dialog-frame-open">
         <div class="dialog-header" style="background: ${colorType}; position: relative;">
             <div id="dialog-picture-control">
-                <button id="previous-picture" onclick="prevSearchPicture(${i})"><span
+                <button id="previous-picture" onclick="prevPicture()"><span
                         class="previous-picture"></span></button>
-                <button id="next-picture" onclick="nextSearchPicture(${i})"><span class="next-picture"></span></button>
+                <button id="next-picture" onclick="nextPicture()"><span class="next-picture"></span></button>
             </div>
             <div class="dialog-headline">
                 <div class="dialog-name">

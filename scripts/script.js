@@ -135,7 +135,6 @@ function openSearchPicture(index, colorType) {
     srcInnerDialog(currentSearchArrayIndex, colorType);
 }
 
-
 function dialogClose() {
     dialogOpen.close();
     dialogOpen.classList.remove('opened');
@@ -145,7 +144,7 @@ function srcInnerDialog(index) {
     let resultRef = document.getElementById("dialog-frame");
     let types = "";
     let colorType = "";
-    let passOnArray = dataSearchArrayPokemon.length > 1 ? dataSearchArrayPokemon : dataArrayPokemon;
+    let passOnArray = dataSearchArrayPokemon.length > 0 ? dataSearchArrayPokemon : dataArrayPokemon;
     for (let j = 0; j < passOnArray[index].types.length; j++) {
         let typeName = passOnArray[index].types[j].type.name;
         let color = getColorOfType(typeName);
@@ -157,44 +156,42 @@ function srcInnerDialog(index) {
     } else {
         resultRef.innerHTML = getHtmlSearchForDetail(index, types, colorType);
     }
-
 }
 
-
 function nextPicture() {
-    if (currentArrayIndex === dataArrayPokemon.length - 1) {
-        currentArrayIndex = 0;
+    if (dataSearchArrayPokemon.length > 0) {
+        if (currentSearchArrayIndex === dataSearchArrayPokemon.length - 1) {
+            currentSearchArrayIndex = 0;
+        } else {
+            currentSearchArrayIndex++;
+        }
+        srcInnerDialog(currentSearchArrayIndex);
     } else {
-        currentArrayIndex++;
+        if (currentArrayIndex === dataArrayPokemon.length - 1) {
+            currentArrayIndex = 0;
+        } else {
+            currentArrayIndex++;
+        }
+        srcInnerDialog(currentArrayIndex);
     }
-    srcInnerDialog(currentArrayIndex);
 }
 
 function prevPicture() {
-    if (currentArrayIndex === 0) {
-        currentArrayIndex = dataArrayPokemon.length - 1;
+    if (dataSearchArrayPokemon.length > 0) {
+        if (currentSearchArrayIndex === 0) {
+            currentSearchArrayIndex = dataSearchArrayPokemon.length - 1;
+        } else {
+            currentSearchArrayIndex--;
+        }
+        srcInnerDialog(currentSearchArrayIndex);
     } else {
-        currentArrayIndex--;
+        if (currentArrayIndex === 0) {
+            currentArrayIndex = dataArrayPokemon.length - 1;
+        } else {
+            currentArrayIndex--;
+        }
+        srcInnerDialog(currentArrayIndex);
     }
-    srcInnerDialog(currentArrayIndex);
-}
-
-function nextSearchPicture() {
-    if (currentSearchArrayIndex === dataSearchArrayPokemon.length - 1) {
-        currentSearchArrayIndex = 0;
-    } else {
-        currentSearchArrayIndex++;
-    }
-    srcInnerDialog(currentSearchArrayIndex);
-}
-
-function prevSearchPicture() {
-    if (currentSearchArrayIndex === 0) {
-        currentSearchArrayIndex = dataSearchArrayPokemon.length - 1;
-    } else {
-        currentSearchArrayIndex--;
-    }
-    srcInnerDialog(currentSearchArrayIndex);
 }
 
 function searchPokemon() {
