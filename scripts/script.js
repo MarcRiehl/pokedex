@@ -48,7 +48,7 @@ function startLoadingScreen() {
     document.body.classList.add("no-scroll");
     setTimeout(() => {
         endLoadingScreen();
-    }, 500);
+    }, 3000);
 }
 
 function endLoadingScreen() {
