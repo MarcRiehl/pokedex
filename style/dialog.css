@@ -7,7 +7,6 @@ dialog {
   height: 666px;
   margin: auto;
   filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.7));
-
 }
 
 .dialog-frame-open {
@@ -31,6 +30,11 @@ dialog {
 
 html:has(dialog[open]) {
   overflow: hidden;
+
+}
+
+html:has(dialog[open]) #content {
+  pointer-events: none;
 }
 
 dialog::backdrop {
@@ -38,14 +42,12 @@ dialog::backdrop {
   backdrop-filter: blur(0px);
   transition: all 250ms ease-in-out;
   border: none;
-
 }
 
 dialog.opened::backdrop {
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   transition: all 250ms ease-in-out;
-
   height: 100%;
 }
 
@@ -62,7 +64,6 @@ dialog.opened::backdrop {
   background-position: right 0px bottom -203px;
   background-size: cover;
   opacity: 0.3;
-  pointer-events: none;
 }
 
 .dialog-title {
@@ -265,5 +266,4 @@ table.pokemon-table td:last-of-type {
   color: #2e2e2e;
   font-weight: 600;
   z-index: 1;
-  pointer-events: none;
 }

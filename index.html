@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="./style/all.min.css" />
     <script src="./scripts/script.js" defer></script>
     <script src="./scripts/template.js" defer></script>
+    <link rel="icon" type="image/png" href="./favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Pokedex" />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
 
 </head>
 
@@ -31,12 +37,14 @@
         </header>
     </section>
     <main>
-        <div id="overlay" class="hidden"><img src="./assets/img/loading-pokeball.png" alt="Pokeball" /></div>
+        <div id="overlay" class="hidden"><img src="./assets/img/loading-pokeball.png" alt="Pokeball" />
+        </div>
+        <dialog id="dialog-frame" aria-labelledby="dialog-title" closedby="any" class="">
+        </dialog>
         <section class="wrapper-content">
             <section class="wrapper-inner">
                 <!-- #region Content -->
-                <dialog id="dialog-frame" aria-labelledby="dialog-title" closedby="any">
-                </dialog>
+
                 <section id="content">
                 </section>
                 <div id="load-more">
@@ -54,13 +62,19 @@
     <section class="wrapper-footer">
         <footer>
             <div class="footer-flex">
-                <div class="logo-footer">
-                    <img class="logo-footer-img" src="./assets/img/logo-dev-aka.png" alt="Logo Developer Akademie" />
+                <div class="footer-left">
+                    <img class="logo-footer-img" src="./assets/img/footer-logo-pokedex.png" alt="Logo Pokedex" />
                     <div class="copyright">&#169;&nbsp<span id="year"></span>. Alle Rechte vorbehalten.</div>
+                </div>
+                <div class="footer-right">
+                    <div><a href="./sites/impressum.html" target="_self" class="footer-link">Impressum</a></div>
+                    <div class="footer-line"></div>
+                    <div><a href="./sites/datenschutz.html" target="_self" class="footer-link">Datenschutz</a></div>
                 </div>
             </div>
         </footer>
     </section>
 
 </body>
+
 </html>

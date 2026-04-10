@@ -7,6 +7,7 @@ let currentSearchArrayIndex = 0;
 let dialogOpen = document.getElementById('dialog-frame');
 const overlay = document.getElementById('overlay');
 let resultRef = document.getElementById("content");
+document.getElementById("year").innerHTML = new Date().getFullYear();
 
 
 function ini() {
